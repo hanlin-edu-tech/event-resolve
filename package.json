@@ -22,7 +22,6 @@
     "pug" : "2.0.0-rc.2"
   },
   "dependencies" : {
-    "font-awesome" : "4.7.0"
   },
   "scripts" : {
     "test" : "echo website"
