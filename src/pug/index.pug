@@ -1,0 +1,21 @@
+- var webcomponentPath = "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current/"
+doctype html
+html(lang="zh-tw")
+    head
+        meta(charset="UTF-8")
+        title 解題救援操作說明
+        link(rel="stylesheet" type="text/css" href="./css/index.css")
+    body
+        header#ehanlin-header
+        nav#ehanlin-menu
+        div
+            div#info-left-side
+            div#stage
+                div#banner: img(src="./img/banner.jpg")
+                div#main: img(src="./img/main.png")
+
+        footer#ehanlin-footer
+        script(type="text/javascript" src=webcomponentPath + "header/ehanlin-header.js")
+        script(type="text/javascript" src=webcomponentPath + "menu/ehanlin-menu.js")
+        script(type="text/javascript" src=webcomponentPath + "infoLeftSide/ehanlin-info-left-side.js")
+        script(type="text/javascript" src=webcomponentPath + "footer/ehanlin-footer.js")
