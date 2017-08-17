@@ -8,3 +8,11 @@ src/js
 src/css
 src/**/*.html
 src/lib
+node_modules
+package-lock.json
+config.gypi
+.git
+.svn
+.DS_Store
+._*
+CVS
