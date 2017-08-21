@@ -1,2 +1,2 @@
 #!/bin/bash
-curl -X POST -H 'Content-Type: application/json' -d "{\"Repository\":\"event-resolve\",\"Tag\":\"${TRAVIS_TAG}\",\"Owner\":\"eHanlin\",\"Password\":\"${EHANLIN_PW}\", \"Name\": \"resolve\"}" 'http://www.ehanlin.com.tw/event/api/Deploy'
+curl -X POST -H 'Content-Type: application/json' -d "{\"Repository\":\"event-resolve\",\"Tag\":\"${TRAVIS_TAG}\",\"Owner\":\"eHanlin\",\"Password\":\"${EHANLIN_PW}\", \"Name\": \"resolve\"}" 'http://test.ehanlin.com.tw/event/api/Deploy'
