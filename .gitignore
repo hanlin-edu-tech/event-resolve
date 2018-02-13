@@ -12,3 +12,4 @@ config.gypi
 .DS_Store
 ._*
 CVS
+service-account-file.json

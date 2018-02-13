@@ -1,82 +1,57 @@
-var gulp = require("gulp");
-var rename = require("gulp-rename");
-var fs = require("fs");
-var es = require("event-stream");
-var del = require("del");
-var path = require("path");
-var Q = require("q");
-var util = require("gulp-template-util");
+var gulp = require('gulp')
+var fs = require('fs')
+var del = require('del')
+var Q = require('q')
+var util = require('gulp-template-util')
 
-function buildStyle() {
-  return es.map(function(file, cb) {
-    less.render(
-      file.contents.toString(),
-      {
-        paths: [],
-        filename: file.path,
-        compress: false
-      },
-      function(error, result) {
-        if (error != null) {
-          console.log(error);
-          throw error;
-        }
-        file.contents = new Buffer(result.css);
-        cb(null, file);
-      }
-    );
-  });
-}
-
-function libTask(dest) {
-  return function() {
+function libTask (dest) {
+  return function () {
     var packageJson = JSON.parse(
-      fs.readFileSync("package.json", "utf8").toString()
-    );
+      fs.readFileSync('package.json', 'utf8').toString()
+    )
     if (!packageJson.dependencies) {
-      packageJson.dependencies = {};
+      packageJson.dependencies = {}
     }
-    var webLibModules = [];
+    var webLibModules = []
     for (var module in packageJson.dependencies) {
-      webLibModules.push("node_modules/" + module + "/**/*");
+      webLibModules.push('node_modules/' + module + '/**/*')
     }
     return gulp
-      .src(webLibModules, { base: "node_modules/" })
-      .pipe(gulp.dest(dest));
-  };
+      .src(webLibModules, { base: 'node_modules/' })
+      .pipe(gulp.dest(dest))
+  }
 }
 
-function copyStaticTask(dest) {
-  return function() {
+function copyStaticTask (dest) {
+  return function () {
     return gulp
       .src(
-        ["src/**/*.html", "src/img/**/*", "src/css/**/*.css", "src/lib/**/*"],
-        {
-          base: "src"
-        }
+        ['src/**/*.html', 'src/img/**/*', 'src/css/**/*.css', 'src/lib/**/*'],
+      {
+        base: 'src'
+      }
       )
-      .pipe(gulp.dest(dest));
-  };
+      .pipe(gulp.dest(dest))
+  }
 }
 
-function cleanTask() {
-  return del(["dist", ""]);
+function cleanTask () {
+  return del(['dist', ''])
 }
 
-gulp.task("lib", libTask("src/lib"));
-gulp.task("build", ["style", "lib"]);
+gulp.task('lib', libTask('src/lib'))
+gulp.task('build', ['style', 'lib'])
 
-gulp.task("package", function() {
-  var deferred = Q.defer();
-  Q.fcall(function() {
-    return util.logPromise(cleanTask);
-  }).then(function() {
+gulp.task('package', function () {
+  var deferred = Q.defer()
+  Q.fcall(function () {
+    return util.logPromise(cleanTask)
+  }).then(function () {
     return Q.all([
-      util.logStream(libTask("dist/lib")),
-      util.logStream(copyStaticTask("dist")),
-      util.logStream(styleTask("dist/css"))
-    ]);
-  });
+      util.logStream(libTask('dist/lib')),
+      util.logStream(copyStaticTask('dist'))
+    ])
+  })
 
-  return deferred.promise;
-});
+  return deferred.promise
+})
