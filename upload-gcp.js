@@ -1,10 +1,10 @@
 const Storage = require('@google-cloud/storage')
 const fs = require('fs')
 const path = require('path')
-const gcpKeyFile = `./service-account-file.json`
-const bucketName = `ehanlin-event-test`
-const projectId = `187045169515`
+const bucketName = `tutor-events`
+const projectId = `tutor-204108`
 const projectName = `resolve`
+const gcpKeyFile = `./tutor.json`
 
 const storage = new Storage({
   projectId: projectId,

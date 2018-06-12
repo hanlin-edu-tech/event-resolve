@@ -23,7 +23,8 @@
   },
   "dependencies": {
     "@google-cloud/storage": "^1.5.2",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "gulp-gcloud-publish": "^2.0.0"
   },
   "scripts": {
     "test": "echo website"
