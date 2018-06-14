@@ -1,6 +1,6 @@
-const gulp = require('gulp')
-const del = require('del')
 const Q = require('q')
+const del = require('del')
+const gulp = require('gulp')
 const util = require('gulp-template-util')
 const gcPub = require('gulp-gcloud-publish')
 const Storage = require('@google-cloud/storage')
@@ -35,19 +35,19 @@ let removeEmptyFiles = () => {
   let array = ['img', 'css', 'lib']
   array.forEach(emptyFiles => {
     storage
-    .bucket(bucketName)
-    .file(`/event/${projectName}/${emptyFiles}`)
-    .delete()
-    .then(() => {
-      console.log(`gs://${bucketName}/${emptyFiles} deleted.`)
-    })
-    .catch(err => {
-      console.error('ERROR:', err)
-    })
+      .bucket(bucketName)
+      .file(`/event/${projectName}/${emptyFiles}`)
+      .delete()
+      .then(() => {
+        console.log(`gs://${bucketName}/${emptyFiles} deleted.`)
+      })
+      .catch(err => {
+        console.error('ERROR:', err)
+      })
   })
 }
 
-gulp.task('publish', () => {
+gulp.task('uploadGcp', () => {
   return gulp.src(['dist/**/*'])
     .pipe(gcPub({
       bucket: bucketName,
@@ -77,6 +77,5 @@ gulp.task('package', () => {
       util.logStream(copyStaticTask('dist'))
     ])
   })
-
   return deferred.promise
 })
