@@ -18,7 +18,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-template-util": "0.0.2",
     "imagemin-pngquant": "^5.1.0",
-    "jquery": "3.2.1",
+    "jquery": "3.4.1",
     "less": "2.7.2",
     "path": "^0.12.7",
     "pug": "2.0.0-rc.2",
